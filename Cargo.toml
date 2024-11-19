@@ -1,19 +1,23 @@
 [package]
-name = "ESPlayground"
-version = "0.1.0"
 authors = ["yrakcaz <zackaryayoun@gmail.com>"]
+categories = ["embedded", "rust", "esp32"]
+description = "Playing around with the ESP32 SoC"
 edition = "2021"
+keywords = ["ESP32", "SoC", "playground"]
+license = "MIT"
+name = "esp-layground"
+readme = "README.md"
+repository = "https://github.com/yrakcaz/esp-layground.git"
 resolver = "2"
 rust-version = "1.77"
-description = "Playing around with the ESP32 SoC"
-license = "MIT"
-repository = "https://github.com/yrakcaz/ESPlayground.git"
-readme = "README.md"
-keywords = ["ESP32", "SoC", "playground"]
-categories = ["embedded", "rust", "esp32"]
+version = "0.1.0"
+
+[lib]
+harness = false # do not use the built in cargo test harness -> resolve rust-analyzer errors
 
 [[bin]]
 name = "ESPlayground"
+path = "src/bin/main.rs"
 harness = false # do not use the built in cargo test harness -> resolve rust-analyzer errors
 
 [profile.release]
@@ -25,15 +29,16 @@ opt-level = "z"
 
 [features]
 default = []
-
 experimental = ["esp-idf-svc/experimental"]
 
 [dependencies]
 log = "0.4"
 esp-idf-svc = { version = "0.49", features = ["critical-section", "embassy-time-driver", "embassy-sync"] }
 anyhow = "1.0.93"
-esp-idf-sys = "0.35.0"
 embedded-hal = "=0.2.7"
+esp-idf-hal = "0.44.1"
+esp32-nimble = "0.8.2"
+num_enum = "0.7.3"
 
 [build-dependencies]
 embuild = "0.32.0"
